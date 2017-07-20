@@ -1,0 +1,37 @@
+<pagination-controls (pageChange)="page = $event" id="1" maxSize="10" directionLinks="true" autoHide="true">
+</pagination-controls>
+<div class="row">
+  <div *ngFor="let challenge of challenges | paginate: {itemsPerPage: 10, currentPage:page, id: '1'};let i = index">
+    <div class="col-md-4">
+      <div class="offer offer-success">
+        <div class="shape">
+          <div class="shape-text">
+
+            {{challenge.priority}}
+          </div>
+        </div>
+        <div class="offer-content">
+          <h3 class="lead">
+            {{challenge.name}}
+          </h3>
+          <p>
+            {{challenge.description}}
+
+
+            <!--<img class="mythumbnail" src="{{thumbnail.dataUrl || 'http://upforest.gov.in/Images/Default.png '}}"/>>-->
+          </p>
+          <span class="glyphicon glyphicon-calendar">  {{challenge.start_date | date:'short'}} </span><br><br>
+          <span class="glyphicon glyphicon-calendar">  {{challenge.end_date  | date:'short'}} </span>
+        </div>
+      </div>
+      <span class="actions">
+        <button type="submit"  routerLinkActive="active" class="btn btn-info"><a [routerLink]="['/edit-challenge']">Edit</a></button>
+        <button (click)="deleteChallenge(challenge._id)" type="delete" class="btn btn-danger">Delete</button>
+      </span>
+    </div>
+  </div>
+  <!-- link to add new challenge-->
+  <div class=" col-md-12 btn pull-right">
+    <button type="submit" routerLinkActive="active" class="btn btn-warning"><a [routerLink]="['/add-challenge']">Add New Challenge</a></button>
+  </div>
+  <div>
